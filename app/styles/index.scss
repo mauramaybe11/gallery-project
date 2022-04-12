@@ -1,0 +1,13 @@
+@import '~bootstrap/scss/bootstrap';
+
+.box {
+    align-items: center;
+    background-color: grey;
+    border: 1px solid orange;
+    color: blue;
+    display: flex;
+    font-family: sans-serif;
+    height: 80px;
+    overflow: hidden;
+    justify-content: center;
+}
