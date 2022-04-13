@@ -28,34 +28,61 @@ const signOut = function () {
     }
   })
 }
-
-const createNewArtPiece = function (data) {
+// change Password
+const changePassword = function (data) {
   return $.ajax({
-    method: 'POST',
-    url: config.apiUrl + '/games',
+    method: 'PATCH',
+    url: config.apiUrl + '/change-password',
     headers: {
       Authorization: 'Bearer ' + store.user.token
     },
-    data: {}
+    data
+    // same as data: data
   })
 }
-
+// create art piece
+const createNewArtPiece = function (data) {
+  return $.ajax({
+    method: 'POST',
+    url: config.apiUrl + '/artPieces',
+    headers: {
+      Authorization: 'Bearer ' + store.user.token
+    },
+    data: { art: data }
+  })
+}
+// update art piece
 const updateArtPiece = function (questionNumber, answerValue, gameOver, score) {
   // console.log(data)
 
   return $.ajax({
     method: 'PATCH',
-    url: config.apiUrl + '/games/' + store.game._id,
+    url: config.apiUrl + '/artPieces/' + store.art._id,
     headers: {
       Authorization: 'Bearer ' + store.user.token
     },
-    user: {
-      artPiece: {
-        artistName: text,
-        nameOfPiece: text,
-        over: gameOver,
-        score: num
-      }
+    data: { art: data }
+  })
+}
+// show art piece
+const showArtPiece = function (data) {
+  console.log(data)
+  return $.ajax({
+    method: 'GET',
+    url: config.apiUrl + '/artPieces/' + store.art._id,
+    headers: {
+      Authorization: 'Bearer ' + store.user.token
+    }
+  })
+}
+// delete art piece
+const deleteBook = function (id) {
+  console.log(id)
+  return $.ajax({
+    method: 'DELETE',
+    url: config.apiUrl + '/artPieces/' + store.art._id,
+    headers: {
+      Authorization: 'Bearer ' + store.user.token
     }
   })
 }
@@ -64,8 +91,11 @@ module.exports = {
   signUp,
   signIn,
   signOut,
-  createNewGame,
-  updateGame
+  changePassword,
+  createNewArtPiece,
+  updateArtPiece,
+  showArtPiece,
+  deleteBook
   // changePassword,
   // signOut,
 }

@@ -1,4 +1,4 @@
-# Gallery Project (National Park Edition)
+# Gallery Project 
 
 ## Description of Application 
 This is a platform to create a history of your art pieces in your very own personal art gallery. You will be able to look at all of the works of art that you have added.  You will also be able to see all of the other user's artwork as well. 

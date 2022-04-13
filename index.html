@@ -14,7 +14,10 @@
     <body>
       <h1>Personal Art Gallery</h1>
       <h2>Show off your works of art</h2>
-      <div class="form" id="slug-sign-up-form">
+      <button id="new-art">New User?</button>
+      <button id="hide-new-art">Hide Me!</button>
+      
+      <div class="form" id="art-sign-up-form">
         <form id="sign-up">
           <p>This is a fake gallery. Do not use your real email or passwords.</p>
           <input type="text" name="credentials[email]" placeholder="Email">
@@ -22,51 +25,59 @@
           <input type="password" name="credentials[password_confirmation]" placeholder="Confirm Password">
           <input class="sign-up-button" type="submit" value="Sign up!">
         </form>
-        <section id="slug-sign-up-success-display"></section>
-        <section id="slug-sign-up-error-display"></section>
+        <section id="art-sign-up-success-display"></section>
+        <section id="art-sign-up-error-display"></section>
       </div>
-      <button id="new-slug">New User?</button>
-      <button id="hide-new-slug">Hide Me!</button>
+      
+      <button id="sign-in-button">Sign In</button>
+      <button id="hide-sign-in-button">Hide Me</button>
 
-      <div class="form" id="slug-sign-in-form">
-        <p></p>
+      <div class="form" id="art-sign-in-form">
         <form id="sign-in-form">
           <input name="credentials[email]" type="email" placeholder="Email">
           <input name="credentials[password]" type="password" placeholder="Enter password">
           <button type="submit">Sign In</button>
         </form>
-        <section id="slug-sign-in-success-display"></section>
-        <section id="slug-sign-in-error-display"></section>
+        <section id="art-sign-in-success-display"></section>
+        <section id="art-sign-in-error-display"></section>
       </div>
     
-      <div id="slug-sign-out">
+      <div id="art-sign-out">
         <p id="sign-out-text"></p>
         <button id="sign-out-button">Sign Out</button>
       
-        <section id="slug-success-display"></section>
-        <section id="slug-error-display"></section>
+        <section id="art-success-display"></section>
+        <section id="art-error-display"></section>
+
+      <button id="change-password-button">Change Password</button>
+      <form id="change-password-form">
+        <input name="passwords[old]" type="password" placeholder="Enter old password">
+        <input name="passwords[new]" type="password" placeholder="Enter new password">
+        <button type="submit">Change Password</button>
+      </form>
+      <section id="change-password-success-display"></section>
+      <section id="change-password-error-display"></section>
       </div>
+      <button id="create-new-art-piece">Create New Art Piece.</button>
       <div class="form" id="user-art-form">
         <form id="create-your-art">
           <p>Fill in the fields below to add a piece to your personal gallery.</p>
-          <input type="text" name="userName" placeholder="Your Name">
-          <input type="text" name="pieceName" placeholder="Name of Your Art Piece">
-          <input type="date" name="dateFinished" placeholder="Date created mm/dd/yyyy">
-          <input type="url" name="ingurLinkToPiece" placeholder="Paste in the direct link to your imgur photo of your creation">
+          <input type="text" name="artistName" placeholder="Your Name">
+          <input type="text" name="artPieceTitle" placeholder="Name of Your Art Piece">
+          <input type="date" name="dateArtPieceCreated" placeholder="Date created mm/dd/yyyy">
+          <input type="url" name="artPieceImageLink" placeholder="Url link to your Piece">
           <input class="create-your-piece" type="submit" value="Create Your Piece!">
         </form>
-        
-        <section id="slug-sign-up-success-display"></section>
-        <section id="slug-sign-up-error-display"></section>
+  
       </div>
 
-      <div class="container-fluid">
+      <!-- <div class="container-fluid">
         <div class="guessing-image">
           <div class="row">
             <div class="col-12 box"></div>
           </div>
         </div>
-      </div>
+      </div> -->
       
     
     </body>

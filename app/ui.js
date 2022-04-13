@@ -1,93 +1,100 @@
 const store = require('./store.js')
 
 const onSignUpSuccess = function () {
-  $('#slug-sign-up-success-display').html(
-    '<p>You have successfully signed in</p>'
+  $('#art-sign-up-success-display').html(
+    '<p>You have successfully signed up</p>'
   )
   $('form').trigger('reset')
-  $('#slug-sign-up-error-display').hide()
-  $('#slug-sign-up-success-display').show()
+  $('#art-sign-up-error-display, #new-art').hide()
+  $('#art-sign-up-success-display').show()
 }
 
 const onSignUpFailure = function () {
-  $('#slug-sign-up-error-display').html(
-    '<p>You did not log in successfully </p>'
+  $('#art-sign-up-error-display').html(
+    '<p>You did not sign up successfully </p>'
   )
-  $('#slug-sign-up-error-display').show()
-  $('#slug-sign-up-success-display').hide()
+  $('#art-sign-up-error-display').show()
+  $('#art-sign-up-success-display').hide()
 }
 
 const onSignInSuccess = function (response) {
   $('form').trigger('reset')
-  $(
-    '#slug-sign-up-form, #slug-sign-in-form, #slug-error-display, #how-to-play, #new-slug'
-  ).hide()
-  $('#slug-success-display').html('<p>Your Slug is a GO!</p>')
-  $(
-    '#new-game, #sign-out-button, #Winner, #user-turn, #slug-sign-in-success-display, #slug-sign-up-success-display, #slug-sign-out'
-  ).show()
+  $('#art-sign-up-form, #art-sign-in-form, #art-error-display, #new-art').hide()
+  $('#art-success-display').html('<p>You have successfully signed in.</p>')
+  $('#sign-out-button, #user-turn, #art-sign-in-success-display, #art-sign-up-success-display, #art-sign-out, #create-new-art-piece').show()
   console.log(response)
   store.user = response.user
 }
 
 const onSignInFailure = function () {
-  $('#slug-sign-in-error-display').html('<p>Error while signing in</p>')
-  $('#slug-sign-in-error-display').show()
+  $('#art-sign-in-error-display').html('<p>Error while signing in.</p>')
+  $('#art-sign-in-error-display').show()
 }
 
 const onSignOutSuccess = function () {
-  $('#slug-success-display').html('<p>Your Slug is OUT!</p>')
-  $('#Winner').html('<p>Who Will Win?</p>')
-  $('#user-turn').html('<p>Green Slug Goes First!</p>')
+  $('#art-success-display').html('<p>Your successfully signed out.</p>')
   $('form').trigger('reset')
-  $(
-    '#slug-sign-up-form, #slug-sign-in-form, #slug-sign-up-error-display, #slug-sign-up-success-display, #new-slug, #how-to-play'
-  ).show()
-  $(
-    '#new-game, #tic-tac-toe-game, #Winner, #sign-out-button, #sign-out-text, #user-turn, #slug-sign-up-error-display, #slug-sign-up-success-display, #slug-sign-in-error-display, #sign-up'
-  ).hide()
+  $('#art-sign-up-form, #art-sign-in-form, #art-sign-up-error-display, #art-sign-up-success-display, #art-success-display, #new-art').show()
+  $('#sign-out-button, #sign-out-text, #art-sign-up-error-display, #art-sign-up-success-display, #art-sign-in-error-display, #sign-up, #user-art-form, #change-password-button, #change-password-success-display, #change-password-error-display, #create-new-art-piece').hide()
 }
 
 const onSignOutFailure = function () {
-  $('#slug-error-display').html('<p>Error while signing out</p>')
+  $('#art-error-display').html('<p>Error while signing out</p>')
 }
-const clearBoard = function () {
-  // set value = to null
-  $('.box').text('Click Me')
-  $('#Winner').text('Who Will Win?')
-}
-
-const onStartGameSuccess = function (response) {
-  store.game = response.game
-  console.log(response)
-  $('#tic-tac-toe-game').show()
-  clearBoard()
+const onChangePasswordSuccess = function () {
+  $('#change-password-success-display').html('<p>User changed password successfully</p>')
+  $('#change-password-success-display').show()
+  $('#change-password-form, #change-password-error-display').hide()
+  $('form').trigger('reset')
 }
 
-const onStartGameFailure = function () {
-  $('#slug-error-display').html('<p>Error while starting new game!</p>')
+const onChangePasswordFailure = function () {
+  $('#change-password-error-display').html('<p>Error while changing password</p>')
+  $('#change-password-error-display').show()
+}
+const onCreateArtSuccess = function () {
+  $('#art-success-display').html('<p>You have successfully added your new art piece</p>')
+  $('form').trigger('reset')
+  $('#art-success-display').show()
 }
 
-const onUpdateGameSuccess = function (response) {
-  console.log(response)
-  store.game = response.game
+const onCreateArtFailure = function () {
+  $('#art-error-display').html('<p>You wer unable to create your new art piece </p>')
+  $('#art-success-display').hide()
 }
-const onUpdateGameFailure = function (response) {
-  console.log(response)
-  $('#slug-error-display').html('<p>Error while updating the game!</p>')
-}
+// const onCreateNewArtPieceSuccess = function (response) {
+//   // need to think about how clicking the submit button for the form will trigger the api to store the art
+//   store.art = response.art
+//   console.log(response)
+// }
+
+// const onCreateNewArtPieceFailure = function () {
+//   $('#art-error-display').html('<p>Error while creating new art piece!</p>')
+// }
+
+// const onUpdateArtSuccess = function (response) {
+//   console.log(response)
+//   store.art = response.art
+// }
+// const onUpdateArtFailure = function (response) {
+//   console.log(response)
+//   $('#art-error-display').html('<p>Error while updating your art piece. </p>')
+// }
 
 module.exports = {
   onSignUpSuccess,
   onSignUpFailure,
   onSignInSuccess,
   onSignInFailure,
-  // onChangePasswordSuccess,
-  // onChangePasswordFailure,
+  onCreateArtSuccess,
+  onCreateArtFailure,
+  // onShowArtForm,
+  onChangePasswordSuccess,
+  onChangePasswordFailure,
   onSignOutSuccess,
-  onSignOutFailure,
-  onStartGameSuccess,
-  onStartGameFailure,
-  onUpdateGameSuccess,
-  onUpdateGameFailure
+  onSignOutFailure
+  // onCreateNewArtPieceSuccess,
+  // onCreateNewArtPieceFailure,
+  // onUpdateArtSuccess,
+  // onUpdateArtFailure
 }
