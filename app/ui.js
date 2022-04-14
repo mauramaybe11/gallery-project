@@ -21,7 +21,7 @@ const onSignInSuccess = function (response) {
   $('form').trigger('reset')
   $('#art-sign-up-form, #art-sign-in-form, #art-error-display, #new-art, #sign-in-button, #hide-sign-in-button').hide()
   $('#art-success-display').html('<p>You have successfully signed in.</p>')
-  $('#sign-out-button, #user-turn, #art-sign-in-success-display, #art-sign-up-success-display, #art-sign-out, #create-new-art-piece').show()
+  $('#sign-out-button, #user-turn, #art-sign-in-success-display, #art-sign-up-success-display, #art-sign-out, #create-new-art-piece, #change-password-button').show()
   console.log(response)
   store.user = response.user
 }
@@ -35,7 +35,7 @@ const onSignOutSuccess = function () {
   $('#art-success-display').html('<p>Your successfully signed out.</p>')
   $('form').trigger('reset')
   $('#art-sign-up-form, #art-sign-in-form, #art-sign-up-error-display, #art-sign-up-success-display, #art-success-display, #new-art').show()
-  $('#sign-out-button, #sign-out-text, #art-sign-up-error-display, #art-sign-up-success-display, #art-sign-in-error-display, #sign-up, #user-art-form, #change-password-button, #change-password-success-display, #change-password-error-display, #create-new-art-piece, #hide-change-password-button, #show-index-art-pieces').hide()
+  $('#sign-out-button, #sign-out-text, #art-sign-up-error-display, #art-sign-up-success-display, #art-sign-in-error-display, #sign-up, #user-art-form, #change-password-button, #change-password-success-display, #change-password-error-display, #create-new-art-piece, #hide-change-password-button, #show-index-art-pieces, #see-all-user-art, #hide-all-user-art').hide()
 }
 
 const onSignOutFailure = function () {
@@ -57,7 +57,7 @@ const onCreateArtSuccess = function (response) {
                       <div>
                         <h4>Artist: ${response.art.artistName}</h4>
                         <p>Title of Art Piece: ${response.art.artPieceTitle}</p>
-                        <p>When Art Piece Was Created: ${response.art.dateArtPieceCreated}</p>
+                        <p>When Art Piece Was Created: ${response.art.dateArtPieceCreated.substring(0, 10)}</p>
                         <img src=${response.art.artPieceImageLink} style="max-width:75%;max-height:75%;object-fit:cover"> 
                         <br>
                       </div>
@@ -65,6 +65,23 @@ const onCreateArtSuccess = function (response) {
 
   $('#show-create-art-pieces').html(artHtml)
   $('#art-success-display').html('<p>You have successfully added your new art piece</p>')
+  $('form').trigger('reset')
+  $('#art-success-display').show()
+}
+
+const onShowAllArtAllUsersSuccess = function (response) {
+  const artHtml = `
+                      <div>
+                        <h4>Artist: ${response.art.artistName}</h4>
+                        <p>Title of Art Piece: ${response.art.artPieceTitle}</p>
+                        <p>When Art Piece Was Created: ${response.art.dateArtPieceCreated}</p>
+                        <img src=${response.art.artPieceImageLink} style="max-width:75%;max-height:75%;object-fit:cover"> 
+                        <br>
+                      </div>
+                    `
+
+  $('#show-create-art-pieces').html(artHtml)
+  $('#art-success-display').html('<p>You can explore the works of other artists</p>')
   $('form').trigger('reset')
   $('#art-success-display').show()
 }
@@ -90,16 +107,21 @@ const onShowAllArtPiecesSuccess = function (response) {
                         <br>
                         <h4>Artist: ${art.artistName}</h4>
                         <p>Title of Art Piece: ${art.artPieceTitle}</p>
-                        <p>When Art Piece Was Created: ${art.dateArtPieceCreated}</p>
-                        <img src=${art.artPieceImageLink} style="max-width:75%;max-height:75%;object-fit:cover">
+                        <p>When Art Piece Was Created: ${art.dateArtPieceCreated.substring(0, 10)}</p>
+                        <img src=${art.artPieceImageLink} style="max-width:75%;max-height:75%;object-fit:cover;border:20px solid #18191A">
+                        <br>
+                        <br>
                         <div class="please-hide">
                         <form class="art-update-dynamic" data-id=${art._id}>
-                        <input type="text" name="art[artistName]" placeholder="Artist Name Required" required>
-                        <input type="text" name="art[artPieceTitle]" placeholder="Art Title Required" required>
-                        <input type="date" name="art[dateArtPieceCreated]" placeholder="Date created mm/dd/yyyy required" required>
-                        <input type="url" name="art[artPieceImageLink]" placeholder="Url link to your Piece required" required>
+                        <input type="text" name="art[artistName]" placeholder="Artist Name">
+                        <input type="text" name="art[artPieceTitle]" placeholder="Art Title">
+                        <input type="date" name="art[dateArtPieceCreated]" placeholder="Date created">
+                        <input type="url" name="art[artPieceImageLink]" placeholder="Url link to your Piece">
+                        <br>
+                        <br>
                         <button type="submit">Update Art Piece</button>
                         </form>
+                        <br>
                         <button class='art-destroy-dynamic' data-id=${art._id}>Delete Art Piece</button>
                         </div>
                         <br>
@@ -108,7 +130,36 @@ const onShowAllArtPiecesSuccess = function (response) {
                 `
   })
   $('#show-index-art-pieces').html(artHtml)
-  $('#show-index-art-pieces').show()
+  $('#hide-all-user-art').hide()
+  $('#show-index-art-pieces, #see-all-user-art').show()
+}
+
+const onShowAllArtPiecesAllUsersSuccess = function (response) {
+  // string to represent the html of our books display
+  // initialize as empty
+  let artHtml = ''
+
+  // use forEach to display every book
+  response.art.forEach((art) => {
+    // booksHtml += '<li>' + book.title + '</li>'
+    // booksHtml = booksHtml + '<li>' + book.title + '</li>'
+
+    artHtml += `
+                      <div>
+                        <br>
+                        <br>
+                        <h4>Artist: ${art.artistName}</h4>
+                        <p>Title of Art Piece: ${art.artPieceTitle}</p>
+                        <p>When Art Piece Was Created: ${art.dateArtPieceCreated.substring(0, 10)}</p>
+                        <img src=${art.artPieceImageLink} style="max-width:75%;max-height:75%;object-fit:cover;border:20px solid #18191A">
+                        <br>
+                        <br>
+                      </div>
+                `
+  })
+  $('#show-index-art-pieces').html(artHtml)
+  $('#see-all-user-art').hide()
+  $('#show-index-art-pieces, #hide-all-user-art').show()
 }
 
 const onDeleteArtPieceSuccess = function () {
@@ -124,8 +175,8 @@ const onDeleteArtPieceSuccess = function () {
   // use setTimeout to allow the success message to stay for 5 seconds before
   // the message is replaced with '' and the 'success' class is removed
   setTimeout(() => {
-    $('#books-destroy-message').html('')
-    $('#books-destroy-message').removeClass('success')
+    $('#art-destroy-message').html('')
+    $('#art-destroy-message').removeClass('success')
   }, 5000)
 
   // reset all forms
@@ -133,7 +184,7 @@ const onDeleteArtPieceSuccess = function () {
 }
 const onUpdateArtPieceSuccess = function (responseData) {
   // add success message to our books-update-message element
-  $('#art-update-message').html('You successfully updated the book')
+  $('#art-update-message').html('You successfully updated your piece of art')
   $('#art-update-message').addClass('success')
 
   // use setTimeout to allow the success message to stay for 5 seconds before
@@ -161,5 +212,7 @@ module.exports = {
   onSignOutFailure,
   onShowAllArtPiecesSuccess,
   onDeleteArtPieceSuccess,
-  onUpdateArtPieceSuccess
+  onUpdateArtPieceSuccess,
+  onShowAllArtPiecesAllUsersSuccess,
+  onShowAllArtAllUsersSuccess
 }

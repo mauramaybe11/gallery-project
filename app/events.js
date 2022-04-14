@@ -102,6 +102,30 @@ const onShowAllArt = () => {
   // if the request/response has an error, run this callback
   // .catch(() => artUi.onIndexBooksFailure())
 }
+
+const onShowAllArtAllUsers = () => {
+  console.log('in event listener!!!!!')
+  // get the books from the API
+  // check the Network tab!
+  artApi
+    .showAllArtPiecesAllUsers()
+  // JavaScript Promises
+  // if the request/response is successful, run this callback
+    .then((response) => artUi.onShowAllArtPiecesAllUsersSuccess(response))
+  // if the request/response has an error, run this callback
+  // .catch(() => artUi.onIndexBooksFailure())
+}
+
+const onHideAllUserArt = () => {
+  artApi
+    .showAllArtPieces()
+  // JavaScript Promises
+  // if the request/response is successful, run this callback
+    .then((response) => artUi.onShowAllArtPiecesSuccess(response))
+}
+
+/// Create this function got distraccted just have this function call the only user art function
+
 const onCreateNewArt = function (event) {
   event.preventDefault()
 
@@ -116,7 +140,6 @@ const onCreateNewArt = function (event) {
     .then(onShowAllArt)
     .catch(() => artUi.onCreateArtFailure())
 }
-
 const onDeleteArtPiece = function (event) {
   // prevent default submit action to stop the page from refreshing
   const deleteButton = event.target
@@ -175,5 +198,7 @@ module.exports = {
   onCreateNewArt,
   onShowAllArt,
   onDeleteArtPiece,
-  onUpdateArtPiece
+  onUpdateArtPiece,
+  onShowAllArtAllUsers,
+  onHideAllUserArt
 }

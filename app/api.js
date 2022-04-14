@@ -65,8 +65,7 @@ const updateArtPiece = function (id, formData) {
   })
 }
 // index - show all art pieces
-const showAllArtPieces = function (data) {
-  console.log(data)
+const showAllArtPieces = function () {
   return $.ajax({
     method: 'GET',
     url: config.apiUrl + '/artPieces/',
@@ -75,7 +74,15 @@ const showAllArtPieces = function (data) {
     }
   })
 }
-
+const showAllArtPiecesAllUsers = function () {
+  return $.ajax({
+    method: 'GET',
+    url: config.apiUrl + '/artPieces/allUsers',
+    headers: {
+      Authorization: 'Bearer ' + store.user.token
+    }
+  })
+}
 // show single art piece
 // const showSingleArtPiece = function (data) {
 //   console.log(data)
@@ -108,6 +115,7 @@ module.exports = {
   createNewArtPiece,
   updateArtPiece,
   showAllArtPieces,
+  showAllArtPiecesAllUsers,
   // showSingleArtPiece,
   deleteArtPiece
   // changePassword,
