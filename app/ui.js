@@ -35,7 +35,7 @@ const onSignOutSuccess = function () {
   $('#art-success-display').html('<p>Your successfully signed out.</p>')
   $('form').trigger('reset')
   $('#art-sign-up-form, #art-sign-in-form, #art-sign-up-error-display, #art-sign-up-success-display, #art-success-display, #new-art').show()
-  $('#sign-out-button, #sign-out-text, #art-sign-up-error-display, #art-sign-up-success-display, #art-sign-in-error-display, #sign-up, #user-art-form, #change-password-button, #change-password-success-display, #change-password-error-display, #create-new-art-piece, #hide-change-password-button, #show-index-art-pieces, #see-all-user-art, #hide-all-user-art').hide()
+  $('#sign-out-button, #sign-out-text, #art-sign-up-error-display, #art-sign-up-success-display, #art-sign-in-error-display, #sign-up, #user-art-form, #change-password-button, #change-password-success-display, #change-password-error-display, #create-new-art-piece, #hide-change-password-button, #show-index-art-pieces, #see-all-user-art, #hide-all-user-art, #show-all-art-message').hide()
 }
 
 const onSignOutFailure = function () {
@@ -111,6 +111,7 @@ const onShowAllArtPiecesSuccess = function (response) {
                         <img src=${art.artPieceImageLink} style="max-width:75%;max-height:75%;object-fit:cover;border:20px solid #18191A">
                         <br>
                         <br>
+                        <div id=${art._id}></div>
                         <div class="please-hide">
                         <form class="art-update-dynamic" data-id=${art._id}>
                         <input type="text" name="art[artistName]" placeholder="Artist Name">
@@ -130,7 +131,7 @@ const onShowAllArtPiecesSuccess = function (response) {
                 `
   })
   $('#show-index-art-pieces').html(artHtml)
-  $('#hide-all-user-art').hide()
+  $('#hide-all-user-art, #show-all-art-message').hide()
   $('#show-index-art-pieces, #see-all-user-art').show()
 }
 
@@ -158,8 +159,9 @@ const onShowAllArtPiecesAllUsersSuccess = function (response) {
                 `
   })
   $('#show-index-art-pieces').html(artHtml)
+  $('#show-all-art-message').text("Explore All User's Art")
   $('#see-all-user-art').hide()
-  $('#show-index-art-pieces, #hide-all-user-art').show()
+  $('#show-index-art-pieces, #hide-all-user-art, #show-all-art-message').show()
 }
 
 const onDeleteArtPieceSuccess = function () {
@@ -182,16 +184,18 @@ const onDeleteArtPieceSuccess = function () {
   // reset all forms
   $('form').trigger('reset')
 }
-const onUpdateArtPieceSuccess = function (responseData) {
+const onUpdateArtPieceSuccess = function (id) {
+  console.log(id)
+  console.log($(`#${id}`).html())
   // add success message to our books-update-message element
-  $('#art-update-message').html('You successfully updated your piece of art')
-  $('#art-update-message').addClass('success')
+  $(`#${id}`).html('You successfully updated your piece of art')
+  $(`#${id}`).addClass('success')
 
   // use setTimeout to allow the success message to stay for 5 seconds before
   // the message is replaced with '' and the 'success' class is removed
   setTimeout(() => {
-    $('#art-update-message').html('')
-    $('#art-update-message').removeClass('success')
+    $(`#${id}`).html('')
+    $(`#${id}`).removeClass('success')
   }, 5000)
 
   // reset all forms

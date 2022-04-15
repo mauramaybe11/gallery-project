@@ -24,7 +24,13 @@ const onArtIsNew = function () {
 }
 
 const onShowArtForm = function () {
-  $('#user-art-form').show()
+  $('#user-art-form, #hide-new-art-piece').show()
+  $('#create-new-art-piece').hide()
+}
+
+const onHideShowArtForm = function () {
+  $('#hide-new-art-piece, #user-art-form').hide()
+  $('#create-new-art-piece').show()
 }
 
 const onShowChangePasswordForm = function () {
@@ -43,12 +49,10 @@ const onAlreadyAnArtist = function () {
 
 const onSignUp = function (event) {
   event.preventDefault()
-  console.log('now here')
 
   // get data from form
   const form = event.target
   const data = getFormFields(form)
-  console.log(data)
 
   artApi
     .signUp(data)
@@ -62,7 +66,6 @@ const onSignIn = function (event) {
   // get data from form
   const form = event.target
   const data = getFormFields(form)
-  console.log(data)
 
   artApi
     .signIn(data)
@@ -83,7 +86,6 @@ const onChangePassword = function (event) {
   // get data from form
   const form = event.target
   const data = getFormFields(form)
-  console.log(data)
 
   artApi
     .changePassword(data)
@@ -91,8 +93,7 @@ const onChangePassword = function (event) {
     .catch(() => artUi.onChangePasswordFailure())
 }
 const onShowAllArt = () => {
-  console.log('in event listener!!!!!')
-  // get the books from the API
+  // get the art Pieces from the API
   // check the Network tab!
   artApi
     .showAllArtPieces()
@@ -104,8 +105,7 @@ const onShowAllArt = () => {
 }
 
 const onShowAllArtAllUsers = () => {
-  console.log('in event listener!!!!!')
-  // get the books from the API
+  // get the art Pieces from the API
   // check the Network tab!
   artApi
     .showAllArtPiecesAllUsers()
@@ -124,7 +124,7 @@ const onHideAllUserArt = () => {
     .then((response) => artUi.onShowAllArtPiecesSuccess(response))
 }
 
-/// Create this function got distraccted just have this function call the only user art function
+/// Create this function got distracted just have this function call the only user art function
 
 const onCreateNewArt = function (event) {
   event.preventDefault()
@@ -132,7 +132,6 @@ const onCreateNewArt = function (event) {
   // get data from form
   const form = event.target
   const data = getFormFields(form)
-  console.log(data)
 
   artApi
     .createNewArtPiece(data)
@@ -141,13 +140,12 @@ const onCreateNewArt = function (event) {
     .catch(() => artUi.onCreateArtFailure())
 }
 const onDeleteArtPiece = function (event) {
-  // prevent default submit action to stop the page from refreshing
   const deleteButton = event.target
 
   // Extract the id from the delete button that was clicked on's data-id attribute
   const id = $(deleteButton).data('id')
 
-  // make API call for destroying one pice of art with id of the book we grabbed from the form
+  // make API call for destroying one pice of art with id of the art we grabbed from the form
   artApi.deleteArtPiece(id)
 
   // if the API call is successful then invoke the onDetroy Success function
@@ -167,19 +165,21 @@ const onUpdateArtPiece = function (event) {
   // Extract the id from the update form that was submitted's data-id attribute
   const id = $(updateForm).data('id')
 
-  // create a javascript object from the form where the user entered the book
+  // create a javascript object from the form where the user entered the art
   // information
   const formData = getFormFields(event.target)
 
-  // make API call to update one book with the data we grabbed from the form
+  // make API call to update one art with the data we grabbed from the form
   artApi.updateArtPiece(id, formData)
 
   // if the API call is successful then invoke the onUpdateSuccess function
-    .then(artUi.onUpdateArtPieceSuccess)
-    .then(onShowAllArt)
+    .then(() => artUi.onUpdateArtPieceSuccess(id))
 
   // if the API call fails then run our onError function
     .catch(artUi.onError)
+  setTimeout(() => {
+    onShowAllArt()
+  }, 2500)
 }
 
 module.exports = {
@@ -200,5 +200,6 @@ module.exports = {
   onDeleteArtPiece,
   onUpdateArtPiece,
   onShowAllArtAllUsers,
-  onHideAllUserArt
+  onHideAllUserArt,
+  onHideShowArtForm
 }

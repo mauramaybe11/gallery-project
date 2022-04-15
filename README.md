@@ -11,4 +11,8 @@ This is a platform to create a history of your art pieces in your very own perso
 - User will be able to select an option to show all of the other artists in the virtual gallery's artwork as well. 
 
 
-**Wire Frame!** ![alt text]( "Picture Text")
+**Wire Frame!** 
+![alt text](https://i.imgur.com/PBZynmK.jpeg "Picture Text")
+![alt text](https://i.imgur.com/ba5wwDp.jpeg "Picture Text")
+
+### Deployment Application 

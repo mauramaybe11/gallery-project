@@ -27,11 +27,13 @@
           <input type="password" name="credentials[password]" placeholder="Password">
           <input type="password" name="credentials[password_confirmation]" placeholder="Confirm Password">
           <input class="sign-up-button" type="submit" value="Sign up!">
+          <br>
         </form>
         <section id="art-sign-up-success-display"></section>
         <section id="art-sign-up-error-display"></section>
       </div>
       <p>
+      <br>
       <button id="sign-in-button">Sign In</button>
       <button id="hide-sign-in-button">Hide Me</button>
       <br>
@@ -63,6 +65,8 @@
         <input name="passwords[old]" type="password" placeholder="Enter old password">
         <input name="passwords[new]" type="password" placeholder="Enter new password">
         <button type="submit">Change Password</button>
+        <br>
+        <br>
       </form>
       <section id="change-password-success-display"></section>
       <section id="change-password-error-display"></section>
@@ -70,8 +74,22 @@
 
       <section id="art-success-display"></section>
       <section id="art-error-display"></section>
+      
       <p>
-        <button id="create-new-art-piece">Create New Art Piece.</button>
+        <button id="see-all-user-art">See All User Art</button>
+        <br>
+      </p>
+      
+      <p>
+        <button id="hide-all-user-art">Hide All User Art</button>
+        <br>
+      </p>
+      <p>
+        <button id="create-new-art-piece">Create New Art Piece</button>
+        <br>
+      </p>
+      <p>
+        <button id="hide-new-art-piece">Hide Create New Art</button>
         <br>
       </p>
 
@@ -87,16 +105,7 @@
         <div id="show-create-art-pieces"></div>
       </div>
       <br>
-      <p>
-        <button id="see-all-user-art">See All User Art</button>
-        <br>
-      </p>
-      
-      <p>
-        <button id="hide-all-user-art">Hide All User Art</button>
-        <br>
-      </p>
-      <div id="art-update-message"></div>
+      <div class="show-art-message" id="show-all-art-message"></div>
       <div id="art-destroy-message"></div>
       <div id="delete-success"></div>
       <div id="show-index-art-pieces"></div>
