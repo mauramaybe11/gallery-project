@@ -35,7 +35,7 @@ const onSignOutSuccess = function () {
   $('#art-success-display').html('<p>You are successfully signed out.</p>')
   $('form').trigger('reset')
   $('#art-sign-up-form, #art-sign-in-form, #art-sign-up-error-display, #art-sign-up-success-display, #art-success-display, #new-art').show()
-  $('#sign-out-button, #sign-out-text, #art-sign-up-error-display, #art-sign-up-success-display, #art-sign-in-error-display, #sign-up, #user-art-form, #change-password-button, #change-password-success-display, #change-password-error-display, #create-new-art-piece, #hide-change-password-button, #show-index-art-pieces, #see-all-user-art, #hide-all-user-art, #show-all-art-message, #hide-new-art').hide()
+  $('#sign-out-button, #sign-out-text, #art-sign-up-error-display, #art-sign-up-success-display, #art-sign-in-error-display, #sign-up, #user-art-form, #change-password-button, #change-password-success-display, #change-password-error-display, #create-new-art-piece, #hide-change-password-button, #show-index-art-pieces, #see-all-user-art, #hide-all-user-art, #show-all-art-message, #hide-new-art, #hide-new-art-piece').hide()
   $('#art-success-display').addClass('success')
 
   // use setTimeout to allow the success message to stay for 5 seconds before
