@@ -19,7 +19,7 @@ const onSignUpFailure = function () {
 
 const onSignInSuccess = function (response) {
   $('form').trigger('reset')
-  $('#art-sign-up-form, #art-sign-in-form, #art-error-display, #new-art, #sign-in-button, #hide-sign-in-button').hide()
+  $('#art-sign-up-form, #art-sign-in-form, #art-error-display, #new-art, #sign-in-button, #hide-sign-in-button, #hide-new-art').hide()
   $('#art-success-display').html('<p>You have successfully signed in.</p>')
   $('#sign-out-button, #user-turn, #art-sign-in-success-display, #art-sign-up-success-display, #art-sign-out, #create-new-art-piece, #change-password-button').show()
   console.log(response)
@@ -32,10 +32,18 @@ const onSignInFailure = function () {
 }
 
 const onSignOutSuccess = function () {
-  $('#art-success-display').html('<p>Your successfully signed out.</p>')
+  $('#art-success-display').html('<p>You are successfully signed out.</p>')
   $('form').trigger('reset')
   $('#art-sign-up-form, #art-sign-in-form, #art-sign-up-error-display, #art-sign-up-success-display, #art-success-display, #new-art').show()
-  $('#sign-out-button, #sign-out-text, #art-sign-up-error-display, #art-sign-up-success-display, #art-sign-in-error-display, #sign-up, #user-art-form, #change-password-button, #change-password-success-display, #change-password-error-display, #create-new-art-piece, #hide-change-password-button, #show-index-art-pieces, #see-all-user-art, #hide-all-user-art, #show-all-art-message').hide()
+  $('#sign-out-button, #sign-out-text, #art-sign-up-error-display, #art-sign-up-success-display, #art-sign-in-error-display, #sign-up, #user-art-form, #change-password-button, #change-password-success-display, #change-password-error-display, #create-new-art-piece, #hide-change-password-button, #show-index-art-pieces, #see-all-user-art, #hide-all-user-art, #show-all-art-message, #hide-new-art').hide()
+  $('#art-success-display').addClass('success')
+
+  // use setTimeout to allow the success message to stay for 5 seconds before
+  // the message is replaced with '' and the 'success' class is removed
+  setTimeout(() => {
+    $('#art-success-display').html('')
+    $('#art-success-display').removeClass('success')
+  }, 5000)
 }
 
 const onSignOutFailure = function () {
@@ -87,7 +95,7 @@ const onShowAllArtAllUsersSuccess = function (response) {
 }
 
 const onCreateArtFailure = function () {
-  $('#art-error-display').html('<p>You wer unable to create your new art piece </p>')
+  $('#art-error-display').html('<p>You were unable to create your new art piece </p>')
   $('#art-success-display').hide()
 }
 
