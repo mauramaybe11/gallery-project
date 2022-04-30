@@ -1,7 +1,6 @@
 const store = require('./store.js')
 const config = require('./config.js')
 const signUp = function (data) {
-  console.log(store)
   return $.ajax({
     method: 'POST',
     url: config.apiUrl + '/sign-up',
@@ -53,8 +52,6 @@ const createNewArtPiece = function (data) {
 }
 // update art piece
 const updateArtPiece = function (id, formData) {
-  console.log(id)
-  console.log(formData)
   return $.ajax({
     method: 'PATCH',
     url: config.apiUrl + '/artPieces/' + id,
@@ -83,21 +80,7 @@ const showAllArtPiecesAllUsers = function () {
     }
   })
 }
-// show single art piece
-// const showSingleArtPiece = function (data) {
-//   console.log(data)
-//   return $.ajax({
-//     method: 'GET',
-//     url: config.apiUrl + '/artPieces/' + store.art._id,
-//     headers: {
-//       Authorization: 'Bearer ' + store.user.token
-//     }
-//   })
-// }
-// delete art piece
 const deleteArtPiece = function (id) {
-  console.log(id)
-  console.log(store.user.token)
   return $.ajax({
     method: 'DELETE',
     url: config.apiUrl + '/artPieces/' + id,

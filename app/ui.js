@@ -22,7 +22,6 @@ const onSignInSuccess = function (response) {
   $('#art-sign-up-form, #art-sign-in-form, #art-error-display, #new-art, #sign-in-button, #hide-sign-in-button, #hide-new-art').hide()
   $('#art-success-display').html('<p>You have successfully signed in.</p>')
   $('#sign-out-button, #user-turn, #art-sign-in-success-display, #art-sign-up-success-display, #art-sign-out, #create-new-art-piece, #change-password-button').show()
-  console.log(response)
   store.user = response.user
 }
 
@@ -193,8 +192,6 @@ const onDeleteArtPieceSuccess = function () {
   $('form').trigger('reset')
 }
 const onUpdateArtPieceSuccess = function (id) {
-  console.log(id)
-  console.log($(`#${id}`).html())
   // add success message to our books-update-message element
   $(`#${id}`).html('You successfully updated your piece of art')
   $(`#${id}`).addClass('success')
