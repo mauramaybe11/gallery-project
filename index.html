@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+    <head>
+      <title>Your Gallery</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+
+      <!-- Do not add `link` tags-->
+      <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+
+      <!-- Do not add `script` tags-->
+      <script src="public/vendor.js" type="text/javascript" charset="utf-8" defer></script>
+      <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
+    </head>
+    <body>
+      <h1>Personal Art Gallery</h1>
+      <h2>Show off your works of art</h2>
+      <p>
+      <button id="new-art">New User</button>
+      <button id="hide-new-art">Hide Me</button>
+      <br>
+      </p>
+
+      <div class="form" id="art-sign-up-form">
+        <form id="sign-up">
+          <p>This is a fake gallery. Do not use your real email or passwords.</p>
+          <input type="text" name="credentials[email]" placeholder="Email">
+          <input type="password" name="credentials[password]" placeholder="Password">
+          <input type="password" name="credentials[password_confirmation]" placeholder="Confirm Password">
+          <input class="sign-up-button" type="submit" value="Sign up!">
+          <br>
+        </form>
+        <section id="art-sign-up-success-display"></section>
+        <section id="art-sign-up-error-display"></section>
+      </div>
+      <p>
+      <br>
+      <button id="sign-in-button">Sign In</button>
+      <button id="hide-sign-in-button">Hide Me</button>
+      <br>
+      </p>
+      <div class="form" id="art-sign-in-form">
+        <form id="sign-in-form">
+          <input name="credentials[email]" type="email" placeholder="Email">
+          <input name="credentials[password]" type="password" placeholder="Enter password">
+          <button type="submit">Sign In</button>
+        </form>
+        <section id="art-sign-in-success-display"></section>
+        <section id="art-sign-in-error-display"></section>
+      </div>
+    
+      <div id="art-sign-out">
+        <p id="sign-out-text"></p>
+        <p>
+        <button id="sign-out-button">Sign Out</button>
+        <br>
+        </p>
+      
+     
+      <p>
+      <button id="change-password-button">Change Password</button>
+      <button id="hide-change-password-button">Hide Me</button>
+      <br>
+      </p>
+      <form id="change-password-form">
+        <input name="passwords[old]" type="password" placeholder="Enter old password">
+        <input name="passwords[new]" type="password" placeholder="Enter new password">
+        <button type="submit">Change Password</button>
+        <br>
+        <br>
+      </form>
+      <section id="change-password-success-display"></section>
+      <section id="change-password-error-display"></section>
+      </div>
+
+      <section id="art-success-display"></section>
+      <section id="art-error-display"></section>
+      
+      <p>
+        <button id="see-all-user-art">See All User Art</button>
+        <br>
+      </p>
+      
+      <p>
+        <button id="hide-all-user-art">Hide All User Art</button>
+        <br>
+      </p>
+      <p>
+        <button id="create-new-art-piece">Create New Art Piece</button>
+        <br>
+      </p>
+      <p>
+        <button id="hide-new-art-piece">Hide Create New Art</button>
+        <br>
+      </p>
+
+      <div class="form" id="user-art-form">
+        <form id="create-your-art">
+          <p>Fill in the fields below to add a piece to your personal gallery.</p>
+          <input type="text" name="artistName" placeholder="Your Name">
+          <input type="text" name="artPieceTitle" placeholder="Name of Your Art Piece">
+          <input type="date" name="dateArtPieceCreated" placeholder="Date created mm/dd/yyyy">
+          <input type="url" name="artPieceImageLink" placeholder="Url link to your Piece">
+          <input class="create-your-piece" type="submit" value="Create Your Piece!">
+        </form>
+        <div id="show-create-art-pieces"></div>
+      </div>
+      <br>
+      <div class="show-art-message" id="show-all-art-message"></div>
+      <div id="art-destroy-message"></div>
+      <div id="delete-success"></div>
+      <div id="show-index-art-pieces"></div>
+      <p id="index-art-error-message"></p>
+    
+    </body>
+</html>

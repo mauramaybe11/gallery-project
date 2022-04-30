@@ -1,0 +1,41 @@
+@import '~bootstrap/scss/bootstrap';
+@import url('https://fonts.googleapis.com/css2?family=Poiret+One&family=Rubik+Microbe&family=Supermercado+One&display=swap');
+body{
+    background-color: #FFE5B4;
+    text-align: center;
+    font-family: "Helvetica", Sans-Serif;
+}
+h1 {
+    font-family: 'Rubik Microbe', cursive;
+    font-size: 100px;
+    text-align: center;
+}
+h2 {
+    font-family: 'Rubik Microbe', cursive;
+    font-size: 70px;
+    text-align: center;
+}
+.box {
+    align-items: center;
+    background-color: grey;
+    border: 1px solid orange;
+    color: blue;
+    display: flex;
+    font-family: sans-serif;
+    height: 80px;
+    overflow: hidden;
+    justify-content: center;
+}
+
+button {
+    color: rgb(245, 235, 214);
+    text-align: center;
+    font-size: 30px;
+    font-style: oblique;
+    font-weight: bold;
+    padding: 10px 24px;
+    background-color: black;
+    border:0px;
+    width: 400px;
+    font-family: "Helvetica", Sans-Serif;
+}
